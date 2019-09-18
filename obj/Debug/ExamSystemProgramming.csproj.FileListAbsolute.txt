@@ -1,0 +1,13 @@
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\bin\Debug\ExamSystemProgramming.exe.config
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\bin\Debug\ExamSystemProgramming.exe
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\bin\Debug\ExamSystemProgramming.pdb
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.csprojAssemblyReference.cache
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.Form1.resources
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.Properties.Resources.resources
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.csproj.GenerateResource.cache
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.csproj.CoreCompileInputs.cache
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.exe
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.pdb
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\bin\Debug\Bunifu_UI_v1.4.dll
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.csproj.CopyComplete
+C:\Users\f0cuS\source\repos\ExamSystemProgramming\ExamSystemProgramming\obj\Debug\ExamSystemProgramming.g.resources
