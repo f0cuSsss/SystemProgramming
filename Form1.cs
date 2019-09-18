@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,16 @@ namespace ExamSystemProgramming
     public partial class Form1 : Form
     {
         private bool isDisable { get; set; }
+
+        /* Processes */
+
+        Process[] processes;
+        private int selectedIndex;
+
+        //===========================================================================
+
+
+
 
         public Form1()
         {
@@ -53,7 +64,27 @@ namespace ExamSystemProgramming
         private void btnStartStop_Click(object sender, EventArgs e)
         {
             isDisable = !isDisable;
-            btnStartStop.Image = isDisable == false ? Image.FromFile("...\\...\\Resources\\stop.jpg") : Image.FromFile("...\\...\\Resources\\start.jpg");
+            btnStartStop.Image = isDisable == false ? 
+                Image.FromFile("...\\...\\Resources\\stop.jpg") : Image.FromFile("...\\...\\Resources\\start.jpg");
         }
+
+        //============================================================================================
+
+        private void btnShowProceses_Click(object sender, EventArgs e)
+        {
+            selectedIndex = processesList.SelectedIndex;
+            processesList.Items.Clear();
+            processes = Process.GetProcesses();
+            int countProcesses = 0;
+            foreach (var process in processes)
+            {
+                processesList.Items.Add($"{countProcesses}: {process.Id} {process.ProcessName}");
+                countProcesses++;
+            }
+            processesList.SelectedIndex = selectedIndex;
+        }
+
+
+        //============================================================================================
     }
 }
