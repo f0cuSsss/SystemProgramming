@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Keyboard = new System.Windows.Forms.TabPage();
@@ -39,14 +40,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.keyboardMincb = new System.Windows.Forms.ComboBox();
             this.keyboardSaveCB = new System.Windows.Forms.CheckBox();
-            this.LogList = new System.Windows.Forms.ListBox();
+            this.kbLogList = new System.Windows.Forms.ListBox();
             this.mousePage = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbMouseActive = new System.Windows.Forms.CheckBox();
             this.btnChangeFileMouse = new System.Windows.Forms.Button();
             this.mouseSaveCB = new System.Windows.Forms.CheckBox();
             this.pictureMouseLog = new System.Windows.Forms.PictureBox();
             this.wordsPage = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.wordAddTextbox = new System.Windows.Forms.TextBox();
             this.btnChangeFileWords = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -77,20 +81,22 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.wordAddTextbox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.saveFDKeyboard = new System.Windows.Forms.SaveFileDialog();
+            this.timerKBsave = new System.Windows.Forms.Timer(this.components);
+            this.timerWsave = new System.Windows.Forms.Timer(this.components);
+            this.saveFDMouse = new System.Windows.Forms.SaveFileDialog();
+            this.saveFDWords = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
             this.Keyboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.mousePage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMouseLog)).BeginInit();
             this.wordsPage.SuspendLayout();
             this.processesPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnStartStop)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -119,7 +125,7 @@
             this.Keyboard.Controls.Add(this.label2);
             this.Keyboard.Controls.Add(this.keyboardMincb);
             this.Keyboard.Controls.Add(this.keyboardSaveCB);
-            this.Keyboard.Controls.Add(this.LogList);
+            this.Keyboard.Controls.Add(this.kbLogList);
             this.Keyboard.Location = new System.Drawing.Point(4, 25);
             this.Keyboard.Margin = new System.Windows.Forms.Padding(2);
             this.Keyboard.Name = "Keyboard";
@@ -223,18 +229,19 @@
             this.keyboardSaveCB.TabIndex = 2;
             this.keyboardSaveCB.Text = "Save to file";
             this.keyboardSaveCB.UseVisualStyleBackColor = true;
+            this.keyboardSaveCB.Click += new System.EventHandler(this.keyboardSaveCB_ClickCheckedChanged);
             // 
-            // LogList
+            // kbLogList
             // 
-            this.LogList.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.LogList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogList.FormattingEnabled = true;
-            this.LogList.ItemHeight = 16;
-            this.LogList.Location = new System.Drawing.Point(301, 19);
-            this.LogList.Margin = new System.Windows.Forms.Padding(2);
-            this.LogList.Name = "LogList";
-            this.LogList.Size = new System.Drawing.Size(185, 228);
-            this.LogList.TabIndex = 0;
+            this.kbLogList.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.kbLogList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kbLogList.FormattingEnabled = true;
+            this.kbLogList.ItemHeight = 16;
+            this.kbLogList.Location = new System.Drawing.Point(301, 19);
+            this.kbLogList.Margin = new System.Windows.Forms.Padding(2);
+            this.kbLogList.Name = "kbLogList";
+            this.kbLogList.Size = new System.Drawing.Size(185, 228);
+            this.kbLogList.TabIndex = 0;
             // 
             // mousePage
             // 
@@ -254,6 +261,16 @@
             this.mousePage.TabIndex = 1;
             this.mousePage.Text = "Mouse";
             this.mousePage.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(249, 166);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
             // 
             // label7
             // 
@@ -306,6 +323,7 @@
             this.mouseSaveCB.TabIndex = 6;
             this.mouseSaveCB.Text = "Save to file after STOP";
             this.mouseSaveCB.UseVisualStyleBackColor = true;
+            this.mouseSaveCB.Click += new System.EventHandler(this.mouseSaveCB_ClickCheckedChanged);
             // 
             // pictureMouseLog
             // 
@@ -341,6 +359,27 @@
             this.wordsPage.TabIndex = 2;
             this.wordsPage.Text = "Words";
             this.wordsPage.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(36, 1);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(84, 20);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Add word";
+            // 
+            // wordAddTextbox
+            // 
+            this.wordAddTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.wordAddTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wordAddTextbox.Location = new System.Drawing.Point(5, 24);
+            this.wordAddTextbox.Name = "wordAddTextbox";
+            this.wordAddTextbox.Size = new System.Drawing.Size(201, 22);
+            this.wordAddTextbox.TabIndex = 24;
             // 
             // btnChangeFileWords
             // 
@@ -400,6 +439,7 @@
             this.wordsSaveCB.TabIndex = 19;
             this.wordsSaveCB.Text = "Save to file";
             this.wordsSaveCB.UseVisualStyleBackColor = true;
+            this.wordsSaveCB.Click += new System.EventHandler(this.wordsSaveCB_ClickCheckedChanged);
             // 
             // btnAddWord
             // 
@@ -410,6 +450,7 @@
             this.btnAddWord.TabIndex = 18;
             this.btnAddWord.Text = "Add";
             this.btnAddWord.UseVisualStyleBackColor = true;
+            this.btnAddWord.Click += new System.EventHandler(this.btnAddWord_Click);
             // 
             // wordsList
             // 
@@ -421,6 +462,7 @@
             this.wordsList.Name = "wordsList";
             this.wordsList.Size = new System.Drawing.Size(278, 112);
             this.wordsList.TabIndex = 16;
+            this.wordsList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.wordsList_MouseDoubleClick);
             // 
             // label15
             // 
@@ -559,7 +601,7 @@
             this.activeLabel_K.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.activeLabel_K.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.activeLabel_K.ForeColor = System.Drawing.Color.Red;
-            this.activeLabel_K.Location = new System.Drawing.Point(3, 5);
+            this.activeLabel_K.Location = new System.Drawing.Point(4, 6);
             this.activeLabel_K.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.activeLabel_K.Name = "activeLabel_K";
             this.activeLabel_K.Size = new System.Drawing.Size(25, 26);
@@ -573,7 +615,7 @@
             this.activeLabel_M.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.activeLabel_M.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.activeLabel_M.ForeColor = System.Drawing.Color.Red;
-            this.activeLabel_M.Location = new System.Drawing.Point(27, 5);
+            this.activeLabel_M.Location = new System.Drawing.Point(32, 6);
             this.activeLabel_M.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.activeLabel_M.Name = "activeLabel_M";
             this.activeLabel_M.Size = new System.Drawing.Size(29, 26);
@@ -587,7 +629,7 @@
             this.activeLabel_W.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.activeLabel_W.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.activeLabel_W.ForeColor = System.Drawing.Color.Red;
-            this.activeLabel_W.Location = new System.Drawing.Point(54, 5);
+            this.activeLabel_W.Location = new System.Drawing.Point(64, 6);
             this.activeLabel_W.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.activeLabel_W.Name = "activeLabel_W";
             this.activeLabel_W.Size = new System.Drawing.Size(31, 26);
@@ -601,10 +643,10 @@
             this.panel3.Controls.Add(this.activeLabel_M);
             this.panel3.Controls.Add(this.activeLabel_W);
             this.panel3.ForeColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel3.Location = new System.Drawing.Point(595, 7);
+            this.panel3.Location = new System.Drawing.Point(586, 7);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(90, 36);
+            this.panel3.Size = new System.Drawing.Size(99, 38);
             this.panel3.TabIndex = 6;
             // 
             // panel4
@@ -627,36 +669,36 @@
             // WordsPathLabel
             // 
             this.WordsPathLabel.AutoSize = true;
-            this.WordsPathLabel.Font = new System.Drawing.Font("Yu Gothic UI Light", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WordsPathLabel.Font = new System.Drawing.Font("Candara Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WordsPathLabel.ForeColor = System.Drawing.Color.White;
             this.WordsPathLabel.Location = new System.Drawing.Point(93, 111);
             this.WordsPathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WordsPathLabel.Name = "WordsPathLabel";
-            this.WordsPathLabel.Size = new System.Drawing.Size(35, 15);
+            this.WordsPathLabel.Size = new System.Drawing.Size(42, 19);
             this.WordsPathLabel.TabIndex = 3;
             this.WordsPathLabel.Text = "None";
             // 
             // MousePathLabel
             // 
             this.MousePathLabel.AutoSize = true;
-            this.MousePathLabel.Font = new System.Drawing.Font("Yu Gothic UI Light", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MousePathLabel.Font = new System.Drawing.Font("Candara Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MousePathLabel.ForeColor = System.Drawing.Color.White;
             this.MousePathLabel.Location = new System.Drawing.Point(93, 93);
             this.MousePathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.MousePathLabel.Name = "MousePathLabel";
-            this.MousePathLabel.Size = new System.Drawing.Size(35, 15);
+            this.MousePathLabel.Size = new System.Drawing.Size(42, 19);
             this.MousePathLabel.TabIndex = 2;
             this.MousePathLabel.Text = "None";
             // 
             // keyboardPathLabel
             // 
             this.keyboardPathLabel.AutoSize = true;
-            this.keyboardPathLabel.Font = new System.Drawing.Font("Yu Gothic UI Light", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.keyboardPathLabel.Font = new System.Drawing.Font("Candara Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.keyboardPathLabel.ForeColor = System.Drawing.Color.White;
             this.keyboardPathLabel.Location = new System.Drawing.Point(93, 74);
             this.keyboardPathLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.keyboardPathLabel.Name = "keyboardPathLabel";
-            this.keyboardPathLabel.Size = new System.Drawing.Size(35, 15);
+            this.keyboardPathLabel.Size = new System.Drawing.Size(42, 19);
             this.keyboardPathLabel.TabIndex = 1;
             this.keyboardPathLabel.Text = "None";
             // 
@@ -701,43 +743,20 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(26, 50);
+            this.label9.Location = new System.Drawing.Point(28, 48);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "Files path";
             // 
-            // pictureBox2
+            // timerKBsave
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(249, 166);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
+            this.timerKBsave.Tick += new System.EventHandler(this.timerKBsave_Tick);
             // 
-            // wordAddTextbox
+            // timerWsave
             // 
-            this.wordAddTextbox.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.wordAddTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wordAddTextbox.Location = new System.Drawing.Point(5, 24);
-            this.wordAddTextbox.Name = "wordAddTextbox";
-            this.wordAddTextbox.Size = new System.Drawing.Size(201, 22);
-            this.wordAddTextbox.TabIndex = 24;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(36, 1);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 20);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Add word";
+            this.timerWsave.Tick += new System.EventHandler(this.timerWsave_Tick);
             // 
             // Form1
             // 
@@ -756,6 +775,7 @@
             this.MaximumSize = new System.Drawing.Size(715, 471);
             this.MinimumSize = new System.Drawing.Size(715, 471);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Monitoring";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
@@ -764,6 +784,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.mousePage.ResumeLayout(false);
             this.mousePage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureMouseLog)).EndInit();
             this.wordsPage.ResumeLayout(false);
             this.wordsPage.PerformLayout();
@@ -773,7 +794,6 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -784,7 +804,7 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage Keyboard;
         private System.Windows.Forms.CheckBox keyboardSaveCB;
-        private System.Windows.Forms.ListBox LogList;
+        private System.Windows.Forms.ListBox kbLogList;
         private System.Windows.Forms.TabPage mousePage;
         private System.Windows.Forms.TabPage wordsPage;
         private System.Windows.Forms.TabPage processesPage;
@@ -832,6 +852,11 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox wordAddTextbox;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.SaveFileDialog saveFDKeyboard;
+        private System.Windows.Forms.Timer timerKBsave;
+        private System.Windows.Forms.Timer timerWsave;
+        private System.Windows.Forms.SaveFileDialog saveFDMouse;
+        private System.Windows.Forms.SaveFileDialog saveFDWords;
     }
 }
 
